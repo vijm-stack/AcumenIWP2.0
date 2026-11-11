@@ -485,7 +485,19 @@ textarea{font-family:inherit;} textarea::placeholder{color:#6C737F;} textarea:fo
 [data-show] [data-ttl]{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 @media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms !important;transition-duration:.01ms !important;} }
 
+/* Market chat (Figma Make parity) */
+[data-mi=card]:hover,[data-mi=card]:focus-visible{box-shadow:inset 0 0 0 1px rgba(2,26,50,0.32),0 10px 26px -18px rgba(2,26,50,0.35) !important;transform:translateY(-1px);}
+[data-mi=card]{transition:box-shadow .18s ease,transform .18s ease;}
+[data-mi=card]:hover [data-mi=arrow],[data-mi=card]:focus-visible [data-mi=arrow]{background-color:#021A32 !important;color:#fff !important;}
+[data-mi=tile]:not([aria-disabled=true]):hover,[data-mi=tile]:not([aria-disabled=true]):focus-visible{box-shadow:inset 0 0 0 1px rgba(2,26,50,0.32),0 10px 26px -18px rgba(2,26,50,0.35) !important;}
+[data-mi=tile]:not([aria-disabled=true]):hover [data-mi=ico],[data-mi=tile]:not([aria-disabled=true]):focus-visible [data-mi=ico],[data-mi=tile][data-sel=true] [data-mi=ico]{background-color:#021A32 !important;color:#fff !important;}
+[data-mi=chip]:hover,[data-mi=chip]:focus-visible{box-shadow:inset 0 0 0 1px rgba(2,26,50,0.35) !important;color:#021A32 !important;}
 /* Figma home restyle (node 5265:2) */
+/* round 2 */
+[data-rrow] [data-rmore]{opacity:0;transition:opacity .15s ease,background-color .15s ease;}
+[data-rrow]:hover [data-rmore],[data-rrow]:focus-within [data-rmore]{opacity:1;}
+[data-rowmenu] [role=menuitem]:focus-visible{outline:2px solid #021A32;outline-offset:-2px;}
+
 /* composer peek: hovering an example previews it in the input */
 [data-peekline]{opacity:0;max-width:0;}[data-pgroup],[data-pmode]{opacity:0;}[data-pgroup] [data-pchip]{opacity:0;}
 [data-homewrap]:has([data-ex]:hover) [data-rotor],[data-homewrap]:has([data-ex]:focus-visible) [data-rotor]{opacity:0;}
@@ -553,6 +565,9 @@ textarea{font-family:inherit;} textarea::placeholder{color:#6C737F;} textarea:fo
   <sc-if value="{{ gate }}" hint-placeholder-val="{{ false }}"><div style="position:fixed;inset:0;z-index:200;background-color:#021020;"><dc-import name="AcumenGate" on-sign-in="{{ onSignedIn }}" hint-size="100%,100%"></dc-import></div></sc-if>
 
   <sc-if value="{{ searchOpen }}" hint-placeholder-val="{{ false }}"><div sc-camel-on-click="{{ closeSearch }}" style="position:fixed;inset:0;z-index:60;background-color:rgba(2,16,32,0.45);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;padding-top:14vh;animation:aFade .2s ease both;"><div sc-camel-on-click="{{ stop }}" style="width:min(640px,92vw);max-height:62vh;display:flex;flex-direction:column;border-radius:20px;background-color:#0F1B38;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.1),0 40px 80px -30px rgba(0,0,0,0.7);color:#F3F8FF;animation:aRise .3s cubic-bezier(.22,1,.36,1) both;"><div style="display:flex;flex-direction:row;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,0.07);"><svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="#9AA6BC" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg><input ref="{{ searchRef }}" value="{{ searchQ }}" sc-camel-on-change="{{ onSearchQ }}" sc-camel-on-input="{{ onSearchQ }}" sc-camel-on-key-down="{{ onSearchKey }}" placeholder="Search chats…" style="flex:1;min-width:0;background-color:transparent;border:0;outline:none;color:#F3F8FF;font-family:inherit;font-size:16px;"><span sc-camel-on-click="{{ closeSearch }}" style="width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#9AA6BC;" style-hover="background-color:rgba(255,255,255,0.08);"><svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></span></div><div style="overflow-y:auto;padding:12px 10px 16px 10px;display:flex;flex-direction:column;gap:2px;"><span style="font-size:12.5px;color:#8D99B0;padding:4px 10px 8px 10px;">{{ searchLabel }}</span><sc-for list="{{ searchItems }}" as="it" hint-placeholder-count="3"><div sc-camel-on-click="{{ closeSearch }}" style="display:flex;flex-direction:row;align-items:center;gap:12px;padding:10px;border-radius:10px;cursor:pointer;font-size:14.5px;color:#E2ECF8;" style-hover="background-color:rgba(255,255,255,0.07);"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="#8D99B0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg><span style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ it.title }}</span><span style="font-family:'Geist Mono',monospace;font-size:11px;color:#8D99B0;">{{ it.when }}</span></div></sc-for><sc-if value="{{ searchEmpty }}"><span style="padding:18px 10px;font-size:14px;color:#8D99B0;">No chats match.</span></sc-if></div></div></div></sc-if>
+  <sc-if value="{{ rowMenuOpen }}"><div data-rowmenu="1" role="menu" aria-label="Chat options" style="{{ rowMenuStyle }}"><div role="menuitem" tabindex="0" sc-camel-on-click="{{ rmRename }}" sc-camel-on-key-down="{{ kbClick }}" style="display:flex;flex-direction:row;gap:12px;align-items:center;height:36px;padding:0 10px;border-radius:10px;font-size:14px;line-height:20px;color:#021A32;cursor:pointer;" style-hover="background-color:rgba(2,26,50,0.05);"><span style="display:flex;flex-shrink:0;color:#6C737F;"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg></span>Rename</div><div role="menuitem" tabindex="0" sc-camel-on-click="{{ rmPin }}" sc-camel-on-key-down="{{ kbClick }}" style="display:flex;flex-direction:row;gap:12px;align-items:center;height:36px;padding:0 10px;border-radius:10px;font-size:14px;line-height:20px;color:#021A32;cursor:pointer;" style-hover="background-color:rgba(2,26,50,0.05);"><span style="display:flex;flex-shrink:0;color:#6C737F;"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"></path><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"></path></svg></span>{{ rmPinLabel }}</div><div role="menuitem" tabindex="0" sc-camel-on-click="{{ rmShare }}" sc-camel-on-key-down="{{ kbClick }}" style="display:flex;flex-direction:row;gap:12px;align-items:center;height:36px;padding:0 10px;border-radius:10px;font-size:14px;line-height:20px;color:#021A32;cursor:pointer;" style-hover="background-color:rgba(2,26,50,0.05);"><span style="display:flex;flex-shrink:0;color:#6C737F;"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg></span>Share</div><div style="height:1px;margin:5px 4px;background-color:rgba(2,26,50,0.08);"></div><div role="menuitem" tabindex="0" sc-camel-on-click="{{ rmArchive }}" sc-camel-on-key-down="{{ kbClick }}" style="display:flex;flex-direction:row;gap:12px;align-items:center;height:36px;padding:0 10px;border-radius:10px;font-size:14px;line-height:20px;color:#021A32;cursor:pointer;" style-hover="background-color:rgba(2,26,50,0.05);"><span style="display:flex;flex-shrink:0;color:#6C737F;"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="5" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"></path><path d="M10 12h4"></path></svg></span>Archive</div><div role="menuitem" tabindex="0" sc-camel-on-click="{{ rmDelete }}" sc-camel-on-key-down="{{ kbClick }}" style="display:flex;flex-direction:row;gap:12px;align-items:center;height:36px;padding:0 10px;border-radius:10px;font-size:14px;line-height:20px;color:#021A32;cursor:pointer;color:#D1342F;" style-hover="background-color:rgba(209,52,47,0.07);"><span style="display:flex;flex-shrink:0;"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg></span>Delete</div></div></sc-if>
+  <sc-if value="{{ confirmOpen }}"><div sc-camel-on-click="{{ confirmCancel }}" style="position:fixed;inset:0;z-index:95;background-color:rgba(2,16,32,0.45);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;animation:aFade .2s ease both;"><div role="alertdialog" aria-label="Delete this chat" sc-camel-on-click="{{ stop }}" style="width:min(400px,92vw);padding:24px;border-radius:20px;background-color:#FFFFFF;box-shadow:0 40px 80px -30px rgba(2,26,50,0.5);display:flex;flex-direction:column;gap:20px;animation:aRise .25s cubic-bezier(.22,1,.36,1) both;"><div style="display:flex;flex-direction:column;gap:8px;"><span style="font-size:18px;line-height:28px;font-weight:600;color:#021A32;">Delete this chat?</span><span style="font-size:14px;line-height:20px;color:#4D525A;">The conversation and anything Acumen drafted in it will be removed. This can't be undone.</span></div><div style="display:flex;flex-direction:row;gap:10px;justify-content:flex-end;"><button type="button" data-b="s" sc-camel-on-click="{{ confirmCancel }}">Cancel</button><button type="button" data-b="p" sc-camel-on-click="{{ confirmGo }}" style="background:#D1342F;box-shadow:none;">Delete chat</button></div></div></div></sc-if>
+  <sc-if value="{{ toastOn }}"><div role="status" aria-live="polite" style="position:fixed;z-index:96;left:50%;bottom:28px;transform:translateX(-50%);display:flex;flex-direction:row;gap:16px;align-items:center;padding:12px 14px 12px 18px;border-radius:14px;background-color:#021A32;color:#FFFFFF;font-size:14px;line-height:20px;box-shadow:0 18px 40px -16px rgba(2,26,50,0.6);animation:aRise .25s cubic-bezier(.22,1,.36,1) both;"><span>{{ toastMsg }}</span><sc-if value="{{ toastHasUndo }}"><span role="button" tabindex="0" sc-camel-on-click="{{ toastUndo }}" sc-camel-on-key-down="{{ kbClick }}" style="font-weight:600;color:#F9A15F;cursor:pointer;">Undo</span></sc-if><span role="button" tabindex="0" aria-label="Dismiss" sc-camel-on-click="{{ toastClose }}" sc-camel-on-key-down="{{ kbClick }}" style="display:flex;color:rgba(255,255,255,0.6);cursor:pointer;"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></span></div></sc-if>
   <!-- SIDEBAR -->
   <div data-sb="1" style="{{ sbStyle }}">
     <div style="width:280px;height:100%;display:flex;flex-direction:column;padding:0 18px 12px 18px;gap:4px;background-image:linear-gradient(90deg,#021A32,#1B1B1B);border-right:0;">
@@ -572,11 +587,13 @@ textarea{font-family:inherit;} textarea::placeholder{color:#6C737F;} textarea:fo
         <sc-if value="{{ hasThread }}" hint-placeholder-val="{{ false }}">
           <div style="height:34px;display:flex;align-items:center;border-radius:10px;background-color:rgba(255,255,255,0.08);padding:0 8px 0 12px;font-size:14px;line-height:20px;font-weight:500;color:#FFFFFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:aRise .4s ease both;flex-shrink:0;">{{ threadTitle }}</div>
         </sc-if>
-        <div style="height:34px;flex-shrink:0;display:flex;flex-direction:row;align-items:center;padding:0 8px 0 12px;cursor:pointer;border-radius:10px;" style-hover="background-color:rgba(255,255,255,0.08);"><span style="flex:1;min-width:0;font-size:14px;line-height:20px;font-weight:500;color:#FFFFFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Starting a contractor assistance…</span></div>
-        
-        <div style="height:34px;flex-shrink:0;display:flex;flex-direction:row;align-items:center;padding:0 8px 0 12px;cursor:pointer;border-radius:10px;" style-hover="background-color:rgba(255,255,255,0.08);"><span style="flex:1;min-width:0;font-size:14px;line-height:20px;font-weight:500;color:#FFFFFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Job analysis · Program manager</span></div>
-        <div style="height:34px;flex-shrink:0;display:flex;flex-direction:row;align-items:center;padding:0 8px 0 12px;cursor:pointer;border-radius:10px;" style-hover="background-color:rgba(255,255,255,0.08);"><span style="flex:1;min-width:0;font-size:14px;line-height:20px;font-weight:500;color:#FFFFFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Cloud technology consultant</span></div>
-      </div>
+        <sc-for list="{{ recentRows }}" as="r" hint-placeholder-count="3"><div data-rrow="1" style="position:relative;height:34px;flex-shrink:0;display:flex;flex-direction:row;align-items:center;gap:4px;padding:0 6px 0 12px;cursor:pointer;border-radius:10px;" style-hover="background-color:rgba(255,255,255,0.08);">
+          <sc-if value="{{ r.renaming }}"><input ref="{{ r.renameRef }}" aria-label="Rename chat" sc-camel-on-key-down="{{ r.onRenameKey }}" sc-camel-on-blur="{{ r.onRenameBlur }}" style="flex:1;min-width:0;height:26px;border:0;border-radius:7px;padding:0 8px;margin-left:-8px;background-color:rgba(255,255,255,0.12);color:#FFFFFF;font-family:inherit;font-size:14px;font-weight:500;outline:none;box-shadow:inset 0 0 0 1px rgba(249,161,27,0.7);"></sc-if>
+          <sc-if value="{{ r.notRenaming }}"><span style="flex:1;min-width:0;font-size:14px;line-height:20px;font-weight:500;color:#FFFFFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.title }}</span>
+            <sc-if value="{{ r.pinned }}"><span title="Pinned" style="display:flex;flex-shrink:0;color:rgba(255,255,255,0.6);"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"></path><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"></path></svg></span></sc-if>
+            <span role="button" tabindex="0" data-rmore="1" aria-label="Chat options" aria-haspopup="menu" sc-camel-on-click="{{ r.openMenu }}" sc-camel-on-key-down="{{ kbClick }}" style="{{ r.moreStyle }}" style-hover="background-color:rgba(255,255,255,0.14);"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.7"></circle><circle cx="12" cy="12" r="1.7"></circle><circle cx="19" cy="12" r="1.7"></circle></svg></span></sc-if>
+        </div></sc-for>
+</div>
       <div data-nav-row="true" style="height:36px;flex-shrink:0;border-radius:10px;display:flex;flex-direction:row;gap:12px;align-items:center;padding:0 12px;font-size:14px;line-height:20px;font-weight:500;color:#FFFFFF;cursor:pointer;transition:background-color .15s ease;" style-hover="background-color:rgba(255,255,255,0.08);"><img src="assets/icon-roadmap.svg" alt="" width="16" height="16" style="display:block;flex-shrink:0;"><span style="white-space:nowrap;flex:1;">Acumen Roadmap</span></div>
       <div data-nav-row="true" style="height:36px;flex-shrink:0;border-radius:10px;display:flex;flex-direction:row;gap:12px;align-items:center;padding:0 12px;font-size:14px;line-height:20px;font-weight:500;color:#FFFFFF;cursor:pointer;transition:background-color .15s ease;" style-hover="background-color:rgba(255,255,255,0.08);"><img src="assets/icon-feedback.svg" alt="" width="16" height="16" style="display:block;flex-shrink:0;"><span style="white-space:nowrap;flex:1;">Feedback</span></div>
       <div style="position:relative;border-top:1px solid rgba(255,255,255,0.1);padding:0;margin-top:8px;">
@@ -608,7 +625,7 @@ textarea{font-family:inherit;} textarea::placeholder{color:#6C737F;} textarea:fo
   <!-- MAIN -->
   <div style="flex:1;min-width:0;display:flex;flex-direction:column;position:relative;">
 
-      <div style="position:absolute;top:0;left:0;right:0;z-index:30;height:60px;display:flex;flex-direction:row;gap:14px;align-items:center;padding:0 36px 0 28px;background-color:color-mix(in srgb,var(--bg) 52%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);" data-comment-anchor="686ca2fe51-div">
+      <div style="{{ topBarStyle }}" data-comment-anchor="686ca2fe51-div">
         <span sc-camel-on-click="{{ toggleSb }}" style="width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--mut);cursor:pointer;" style-hover="background-color:rgba(var(--fg-rgb),0.07);color:var(--t1);"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"></rect><line x1="9" y1="4" x2="9" y2="20"></line></svg></span>
         
         <sc-if value="{{ appMode }}"><span role="button" tabindex="0" sc-camel-on-click="{{ backToChat }}" title="Return to your conversation" style="height:34px;border-radius:12px;background-color:#021A32;color:#FFFFFF;box-shadow:0 4px 12px rgba(2,26,50,0.18);display:flex;flex-direction:row;gap:6px;align-items:center;white-space:nowrap;padding:0 16px 0 12px;font-size:13px;font-weight:600;cursor:pointer;flex-shrink:0;transition:background-color .12s ease,transform .12s ease;" style-hover="background-color:#35485B;transform:translateY(-1px);"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>Main chat</span></sc-if>
@@ -644,7 +661,7 @@ textarea{font-family:inherit;} textarea::placeholder{color:#6C737F;} textarea:fo
 
     <!-- HOME -->
     <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-      <div style="flex:1;overflow-y:auto;overflow-x:hidden;position:relative;display:flex;flex-direction:column;">
+      <div sc-camel-on-scroll="{{ onMainScroll }}" style="flex:1;overflow-y:auto;overflow-x:hidden;position:relative;display:flex;flex-direction:column;">
         
         <span style="position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(450px 320px at 190px 80px,rgba(35,88,166,0.09),rgba(35,88,166,0)),radial-gradient(410px 310px at calc(100% - 230px) calc(100% - 194px),rgba(239,121,38,0.09),rgba(239,121,38,0));"></span>
         
@@ -678,11 +695,11 @@ textarea{font-family:inherit;} textarea::placeholder{color:#6C737F;} textarea:fo
                 </div>
                 <div style="display:flex;flex-direction:row;gap:12px;align-items:center;justify-content:space-between;padding:0 22px 16px 26px;">
                   <div data-modemenu="1" style="position:relative;">
-                    <span sc-camel-on-click="{{ toggleModeMenu }}" style="height:38px;border-radius:999px;display:flex;flex-direction:row;gap:8px;align-items:center;padding:0 12px 0 8px;font-size:14px;line-height:18px;font-weight:600;color:#021A32;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(2,26,50,0.10);background-color:rgba(255,255,255,0.9);transition:background-color .15s ease,box-shadow .15s ease;" style-hover="background-color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(2,26,50,0.18);"><span style="{{ curMode.icoStyle }}"><svg width="11" height="11" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ curMode.ico }}"></path></svg></span>{{ curMode.name }}<span style="{{ chevStyle }}"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span></span>
+                    <span sc-camel-on-click="{{ toggleModeMenu }}" style="height:38px;border-radius:999px;display:flex;flex-direction:row;gap:8px;align-items:center;padding:0 12px 0 12px;font-size:14px;line-height:18px;font-weight:600;color:#021A32;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(2,26,50,0.10);background-color:rgba(255,255,255,0.9);transition:background-color .15s ease,box-shadow .15s ease;" style-hover="background-color:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(2,26,50,0.18);"><span style="{{ curMode.icoStyle }}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ curMode.ico }}"></path></svg></span>{{ curMode.name }}<span style="{{ chevStyle }}"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span></span>
                     <sc-if value="{{ modeMenu }}"><div style="position:absolute;left:-6px;top:calc(100% + 10px);width:300px;padding:6px;border-radius:16px;background-color:#FFFFFF;box-shadow:0 0 0 1px rgba(2,26,50,0.08),0 24px 56px -18px rgba(2,26,50,0.35);display:flex;flex-direction:column;gap:2px;animation:aRise .22s cubic-bezier(.22,1,.36,1) both;">
                       <span style="font-size:11.5px;font-weight:500;color:#898F99;padding:8px 10px 6px 10px;">Mode</span>
                       <sc-for list="{{ feats }}" as="f" hint-placeholder-count="5"><div sc-camel-on-click="{{ f.onClick }}" style="{{ f.rowStyle }}" style-hover="background-color:rgba(2,26,50,0.045);">
-                        <span style="{{ f.icoStyle }}"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="{{ f.ico }}"></path></svg></span>
+                        <span style="{{ f.icoStyle }}"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{ f.ico }}"></path></svg></span>
                         <div style="display:flex;flex-direction:column;gap:1px;min-width:0;flex:1;"><span style="display:flex;flex-direction:row;gap:8px;align-items:center;font-size:14px;font-weight:500;color:#021A32;">{{ f.name }}<sc-if value="{{ f.soon }}"><span style="font-size:11px;font-weight:500;color:#898F99;padding:1px 7px;border-radius:999px;background-color:rgba(2,26,50,0.05);">Preview</span></sc-if></span><span style="font-size:12.5px;line-height:17px;color:#6C737F;">{{ f.desc }}</span></div>
                         <sc-if value="{{ f.on }}"><span style="display:flex;color:#021A32;flex-shrink:0;"><svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></sc-if>
                       </div></sc-for>
@@ -714,12 +731,11 @@ textarea{font-family:inherit;} textarea::placeholder{color:#6C737F;} textarea:fo
           </div></sc-if>
           <div style="width:100%;max-width:878px;align-self:center;display:flex;flex-direction:column;gap:14px;margin-top:25px;">
             <span style="font-size:13.5px;line-height:18px;font-weight:500;color:#5B6676;padding:0 5px;">Pick up where you left off</span>
-            <div role="button" tabindex="0" sc-camel-on-click="{{ resume }}" style="position:relative;display:flex;flex-direction:row;gap:18px;align-items:center;min-height:103px;padding:0 24px 0 22px;border-radius:16px;background-color:rgba(255,255,255,0.92);border:1px solid rgba(2,26,50,0.06);box-shadow:0 2px 12px rgba(2,26,50,0.05);cursor:pointer;transition:box-shadow .25s ease,transform .25s ease;" style-hover="box-shadow:0 10px 26px -12px rgba(2,26,50,0.2);transform:translateY(-1px);">
-              <span style="font-size:16px;line-height:20px;font-weight:600;color:#021A32;flex-shrink:0;">87</span>
+            <div role="button" tabindex="0" sc-camel-on-click="{{ resume }}" style="position:relative;display:flex;flex-direction:row;gap:18px;align-items:center;min-height:103px;padding:0 24px 0 24px;border-radius:16px;background-color:rgba(255,255,255,0.92);border:1px solid rgba(2,26,50,0.06);box-shadow:0 2px 12px rgba(2,26,50,0.05);cursor:pointer;transition:box-shadow .25s ease,transform .25s ease;" style-hover="box-shadow:0 10px 26px -12px rgba(2,26,50,0.2);transform:translateY(-1px);">
               <div style="display:flex;flex-direction:column;gap:9px;min-width:0;flex:1;">
                 <span style="font-size:16px;line-height:20px;font-weight:600;color:#021A32;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Cloud technology consultant · Columbus</span>
-                <div style="height:7px;border-radius:999px;background-color:rgba(2,26,50,0.08);overflow:hidden;"><div style="height:100%;width:87%;border-radius:999px;background-image:linear-gradient(90deg,#F0782B,#F9A15F);"></div></div>
-                <div style="display:flex;flex-direction:row;gap:12px;align-items:center;flex-wrap:wrap;"><span style="font-family:'Geist Mono',monospace;font-size:13px;line-height:18px;color:#5B6676;">26 of 30 ready</span><span style="border-radius:999px;background-color:rgba(242,107,29,0.12);color:#B84A0E;padding:4px 12px;font-size:13px;line-height:18px;font-weight:500;">Next: qualification</span></div>
+                <div style="display:flex;flex-direction:row;gap:12px;align-items:center;"><div role="progressbar" aria-label="Request progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="87" style="flex:1;height:7px;border-radius:999px;background-color:rgba(2,26,50,0.08);overflow:hidden;"><div style="height:100%;width:87%;border-radius:999px;background-image:linear-gradient(90deg,#F0782B,#F9A15F);"></div></div><span style="font-size:13px;line-height:18px;font-weight:600;color:#021A32;white-space:nowrap;font-variant-numeric:tabular-nums;">87% complete</span></div>
+                <div style="display:flex;flex-direction:row;gap:12px;align-items:center;flex-wrap:wrap;"><span style="font-family:'Geist Mono',monospace;font-size:13px;line-height:18px;color:#5B6676;">26 of 30 details ready</span><span style="border-radius:999px;background-color:rgba(242,107,29,0.12);color:#B84A0E;padding:4px 12px;font-size:13px;line-height:18px;font-weight:500;">Next: qualification</span></div>
               </div>
               <span style="height:44px;border-radius:10px;background-color:#021A32;display:flex;flex-direction:row;gap:8px;align-items:center;padding:0 22px;font-size:14px;line-height:18px;font-weight:600;color:#FFFFFF;white-space:nowrap;flex-shrink:0;">Resume<svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
             </div>
@@ -756,6 +772,27 @@ textarea{font-family:inherit;} textarea::placeholder{color:#6C737F;} textarea:fo
               <div style="align-self:flex-end;max-width:80%;display:flex;flex-direction:column;gap:8px;align-items:flex-end;animation:aRise .35s cubic-bezier(.22,1,.36,1) both;">
                 <div style="border-radius:18px 18px 6px 18px;background-color:#021A32;color:#FFFFFF;padding:11px 16px;font-size:15px;line-height:23px;text-wrap:pretty;">{{ m.text }}</div>
                 <sc-if value="{{ m.hasCtx }}"><div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:6px 12px;justify-content:flex-end;align-items:center;font-size:13px;color:var(--dim);" data-comment-anchor="edf80bca31-div"><sc-for list="{{ m.ctx }}" as="c" hint-placeholder-count="1"><span style="display:flex;flex-direction:row;gap:6px;align-items:center;"><span style="{{ c.icoStyle }}"><svg width="13" height="13" sc-camel-view-box="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M8 3.5a4.5 4.5 0 0 1 0 9z" fill="currentColor"></path></svg></span><span style="color:var(--t3);font-weight:500;">{{ c.label }}</span></span></sc-for><span>added to context</span></div></sc-if>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ m.isIntro }}">
+              <div style="display:flex;flex-direction:column;gap:18px;animation:aRise .4s cubic-bezier(.22,1,.36,1) both;">
+                <sc-if value="{{ m.introOpen }}">
+                  <span style="align-self:flex-start;display:inline-flex;flex-direction:row;gap:8px;align-items:center;height:34px;padding:0 14px 0 6px;border-radius:999px;background-color:var(--card);box-shadow:inset 0 0 0 1px rgba(2,26,50,0.1);font-size:13px;color:var(--t2);"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink:0;"><rect width="24" height="24" rx="7" fill="#021A32"></rect><path d="M7.2 17.6L12 6.4l4.8 11.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.7 14.2h4.6" fill="none" stroke="#F0782B" stroke-width="2" stroke-linecap="round"></path></svg>Acumen · Market intelligence</span>
+                  <span style="max-width:560px;font-weight:600;font-size:28px;line-height:36px;letter-spacing:-0.5px;color:var(--t1);text-wrap:pretty;">Market intelligence. Tell me the role you're hiring for, plus a country and market if you have them. I'll ask only for what's missing and start pulling data right away.</span>
+                  <div style="display:flex;flex-direction:column;gap:12px;margin-top:6px;">
+                    <sc-for list="{{ m.introCards }}" as="ic" hint-placeholder-count="3">
+                      <div data-mi="card" role="button" tabindex="0" sc-camel-on-key-down="{{ kbClick }}" sc-camel-on-click="{{ ic.onClick }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:16px 20px;border-radius:16px;background-color:var(--card);box-shadow:inset 0 0 0 1px rgba(2,26,50,0.08);cursor:pointer;">
+                        <div style="display:flex;flex-direction:column;gap:3px;min-width:0;"><span style="font-weight:500;font-size:15px;line-height:22px;color:var(--t1);text-wrap:pretty;">{{ ic.title }}</span><span style="font-size:13px;line-height:18px;color:var(--t3);">{{ ic.sub }}</span></div>
+                        <span data-mi="arrow" style="width:32px;height:32px;border-radius:50%;background-color:rgba(2,26,50,0.05);display:flex;align-items:center;justify-content:center;color:var(--t2);transition:background-color .15s ease,color .15s ease;"><svg width="15" height="15" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ m.introClosed }}">
+                  <span style="font-size:16px;line-height:25px;color:var(--t1);text-wrap:pretty;">Market intelligence. Tell me the role you're hiring for, plus a country and market if you have them. I'll ask only for what's missing and start pulling data right away.</span>
+                  <sc-if value="{{ m.introPicked }}"><div style="display:flex;flex-direction:row;gap:8px;align-items:center;font-size:14px;color:var(--mut);margin-top:-8px;"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#107435" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>You chose<span style="color:var(--t1);font-weight:500;">{{ m.introPicked }}</span></div></sc-if>
+                </sc-if>
               </div>
             </sc-if>
 
@@ -845,65 +882,84 @@ textarea{font-family:inherit;} textarea::placeholder{color:#6C737F;} textarea:fo
             </sc-if>
 
             <sc-if value="{{ m.isAsk }}">
-              <div style="display:flex;flex-direction:column;gap:12px;animation:aRise .45s cubic-bezier(.22,1,.36,1) both;">
-                <sc-if value="{{ m.askOpen }}">
-                <div style="display:flex;flex-direction:row;gap:10px;align-items:center;font-size:13px;color:var(--mut);">
-                  <span style="width:22px;height:22px;border-radius:7px;background-color:#021A32;display:flex;align-items:center;justify-content:center;color:#FA9A4B;"><svg width="11" height="11" sc-camel-view-box="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"></path></svg></span>
-                  <span style="font-weight:600;color:var(--t1);">Acumen</span>
-                  <span style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Needs one detail</span>
-                </div>
-                  <div style="border-radius:18px;background-color:var(--card);box-shadow:0 1px 2px rgba(2,26,50,0.04),0 12px 32px -20px rgba(2,26,50,0.2);overflow:hidden;display:flex;flex-direction:column;padding:6px;max-width:620px;">
-                    <div style="padding:12px 12px 10px 12px;display:flex;flex-direction:column;gap:6px;">
-                      <span style="display:flex;flex-direction:row;gap:8px;align-items:center;font-size:12px;font-weight:500;color:#B75500;"><span style="width:6px;height:6px;border-radius:50%;background-color:#F0782B;"></span>One thing I need · {{ m.slotLabel }}</span>
-                      <span style="font-weight:500;font-size:16px;line-height:24px;text-wrap:pretty;">{{ m.question }}</span>
+              <div style="display:flex;flex-direction:column;gap:14px;max-width:690px;animation:aRise .45s cubic-bezier(.22,1,.36,1) both;">
+                <div style="display:flex;flex-direction:row;gap:10px;align-items:center;font-size:13px;color:var(--mut);"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink:0;"><rect width="24" height="24" rx="7" fill="#021A32"></rect><path d="M7.2 17.6L12 6.4l4.8 11.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.7 14.2h4.6" fill="none" stroke="#F0782B" stroke-width="2" stroke-linecap="round"></path></svg><span style="font-weight:600;color:var(--t1);">Acumen</span><span>One quick question</span></div>
+                <span style="font-size:16px;line-height:25px;color:var(--t1);text-wrap:pretty;"><sc-if value="{{ m.askBold }}">{{ m.qPre }}<b style="font-weight:600;">{{ m.qBold }}</b>{{ m.qPost }}</sc-if><sc-if value="{{ m.askPlain }}">{{ m.question }}</sc-if></span>
+                <div style="{{ m.tilesWrap }}">
+                  <sc-for list="{{ m.options }}" as="op" hint-placeholder-count="4">
+                    <div data-mi="tile" data-sel="{{ op.sel }}" role="button" tabindex="0" aria-disabled="{{ m.askDone }}" sc-camel-on-key-down="{{ kbClick }}" sc-camel-on-click="{{ op.onPick }}" style="{{ op.tileStyle }}">
+                      <span data-mi="ico" style="width:32px;height:32px;flex-shrink:0;border-radius:10px;background-color:rgba(2,26,50,0.05);color:var(--dim);display:flex;align-items:center;justify-content:center;transition:background-color .15s ease,color .15s ease;"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ m.slotIco }}"></path></svg></span>
+                      <div style="display:flex;flex-direction:column;gap:1px;min-width:0;flex:1;"><span style="font-weight:600;font-size:14px;line-height:20px;color:var(--t1);">{{ op.label }}</span><span style="font-size:12.5px;line-height:18px;color:var(--t3);">{{ op.sub }}</span></div>
+                      <span style="{{ op.tagStyle }}">{{ op.tag }}</span>
                     </div>
-                    <sc-for list="{{ m.options }}" as="op" hint-placeholder-count="4">
-                      <div role="button" tabindex="0" sc-camel-on-key-down="{{ kbClick }}" sc-camel-on-click="{{ op.onPick }}" style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;min-height:52px;margin:0 6px 8px 6px;padding:10px 14px;border-radius:12px;cursor:pointer;box-shadow:inset 0 0 0 1.5px rgba(42,92,175,0.28);transition:background-color .12s ease,box-shadow .12s ease;" style-hover="background-color:rgba(42,92,175,0.06);box-shadow:inset 0 0 0 1.5px #2A5CAF;">
-                        <div style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-weight:500;font-size:14px;line-height:20px;color:var(--t1);">{{ op.label }}</span><span style="font-size:12.5px;line-height:18px;color:var(--t3);text-wrap:pretty;">{{ op.sub }}</span></div>
-                        <span style="{{ op.tagStyle }}">{{ op.tag }}</span><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="#2A5CAF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                      </div>
-                    </sc-for>
-                    <span style="font-size:12.5px;color:#5B6472;padding:4px 14px 10px 14px;">Or type it below. You can also ask me anything first.</span>
-                  </div>
-                </sc-if>
-                <sc-if value="{{ m.askDone }}">
-                  <div style="display:flex;flex-direction:row;gap:8px;align-items:center;font-size:14px;color:var(--mut);">
-                    <svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#4CC38A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>{{ m.slotLabel }}<span style="color:var(--t1);font-weight:500;">{{ m.answer }}</span>
-                  </div>
-                </sc-if>
+                  </sc-for>
+                </div>
+                <sc-if value="{{ m.askOpen }}"><span style="font-size:12.5px;color:#5B6472;">Or type it below. You can also ask me anything first.</span></sc-if>
               </div>
             </sc-if>
 
+
             <sc-if value="{{ m.isCollapsed }}"><div sc-camel-on-click="{{ m.expandCard }}" style="align-self:flex-start;max-width:100%;display:flex;flex-direction:row;gap:10px;align-items:center;padding:8px 14px;border-radius:999px;background-color:rgba(2,26,50,0.045);cursor:pointer;font-size:13px;color:var(--t3);transition:background-color .15s ease;" style-hover="background-color:rgba(2,26,50,0.09);"><svg width="8" height="8" sc-camel-view-box="0 0 8 8" style="flex-shrink:0;color:var(--dim);"><path d="M2 1l4 3-4 3z" fill="currentColor"></path></svg><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ m.collapsedLabel }}</span><span style="font-size:12px;color:var(--info);flex-shrink:0;">Show</span></div></sc-if>
             <sc-if value="{{ m.showPreview }}">
-              <div style="display:flex;flex-direction:column;gap:16px;max-width:760px;animation:aRise .45s cubic-bezier(.22,1,.36,1) both;">
-                <div style="display:flex;flex-direction:row;gap:10px;align-items:center;font-size:13px;color:var(--mut);">
-                  <span style="width:22px;height:22px;border-radius:7px;background-color:#021A32;display:flex;align-items:center;justify-content:center;color:#FA9A4B;"><svg width="11" height="11" sc-camel-view-box="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"></path></svg></span>
-                  <span style="font-weight:600;color:var(--t1);">Acumen</span>
-                  <span>{{ m.pvCtxLine }}</span>
-                  <sc-if value="{{ m.pvLoading }}"><span style="margin-left:auto;display:flex;flex-direction:row;gap:8px;align-items:center;"><span style="width:10px;height:10px;border-radius:50%;border:1.5px solid rgba(2,26,50,0.15);border-top-color:#021A32;animation:aSpin .7s linear infinite;"></span>Reading the market…</span></sc-if>
+              <div style="display:flex;flex-direction:column;gap:16px;max-width:690px;animation:aRise .45s cubic-bezier(.22,1,.36,1) both;">
+                <div style="display:flex;flex-direction:row;gap:10px;align-items:center;font-size:13px;color:var(--mut);"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink:0;"><rect width="24" height="24" rx="7" fill="#021A32"></rect><path d="M7.2 17.6L12 6.4l4.8 11.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.7 14.2h4.6" fill="none" stroke="#F0782B" stroke-width="2" stroke-linecap="round"></path></svg><span style="font-weight:600;color:var(--t1);">Acumen</span><span style="min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ m.mvCtx }}</span></div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <div role="button" tabindex="0" aria-expanded="{{ m.mvOpen }}" sc-camel-on-key-down="{{ kbClick }}" sc-camel-on-click="{{ m.mvToggle }}" style="align-self:flex-start;display:flex;flex-direction:row;gap:10px;align-items:center;cursor:pointer;max-width:100%;">
+                    <sc-if value="{{ m.pvLoading }}"><span style="width:14px;height:14px;border-radius:50%;border:2px solid rgba(2,26,50,0.14);border-top-color:#021A32;animation:aSpin .7s linear infinite;flex-shrink:0;"></span></sc-if>
+                    <sc-if value="{{ m.pvReady }}"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#158056" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg></sc-if>
+                    <span style="{{ m.mvHeadStyle }}" aria-live="polite">{{ m.mvHead }}</span>
+                    <svg width="9" height="9" sc-camel-view-box="0 0 8 8" style="{{ m.mvChev }}"><path d="M2 1l4 3-4 3z" fill="currentColor"></path></svg>
+                  </div>
+                  <sc-if value="{{ m.mvOpen }}">
+                    <div style="display:flex;flex-direction:column;gap:9px;padding:2px 0 4px 6px;">
+                      <sc-for list="{{ m.mvSteps }}" as="st" hint-placeholder-count="5">
+                        <div style="display:flex;flex-direction:row;gap:12px;align-items:center;animation:aRise .3s ease both;"><span style="{{ st.dot }}"></span><span style="{{ st.style }}">{{ st.label }}</span></div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
                 </div>
                 <sc-if value="{{ m.pvReady }}">
-                  <div style="display:flex;flex-direction:row;gap:14px;align-items:baseline;flex-wrap:wrap;">
-                    <span style="font-weight:600;font-size:24px;line-height:30px;letter-spacing:-0.6px;color:var(--t1);text-wrap:pretty;">{{ m.pvAnswer }}</span>
-                    <span style="display:flex;flex-direction:row;gap:6px;align-items:center;height:26px;padding:0 10px;border-radius:999px;background-color:rgba(2,26,50,0.05);font-size:12px;font-weight:500;color:var(--t2);white-space:nowrap;"><span style="font-weight:700;color:#021A32;">{{ m.pvScore }}</span><span style="color:var(--dim);">/100 fit</span></span>
+                  <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;">
+                    <span style="font-weight:600;font-size:26px;line-height:33px;letter-spacing:-0.7px;color:var(--t1);text-wrap:pretty;max-width:440px;">{{ m.pvAnswer }}</span>
+                    <span role="img" aria-label="{{ m.mvRingLabel }}" style="position:relative;width:60px;height:60px;display:block;"><svg width="60" height="60" sc-camel-view-box="0 0 60 60" aria-hidden="true" style="transform:rotate(-90deg);"><circle cx="30" cy="30" r="26" fill="none" stroke="rgba(2,26,50,0.08)" stroke-width="5"></circle><circle cx="30" cy="30" r="26" fill="none" stroke="#F0782B" stroke-width="5" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="{{ m.pvRingOff }}"></circle></svg><span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:17px;color:var(--t1);font-variant-numeric:tabular-nums;">{{ m.pvScore }}</span></span>
                   </div>
-                  <div style="border-radius:18px;background-color:var(--card);box-shadow:0 1px 2px rgba(2,26,50,0.04),0 12px 32px -20px rgba(2,26,50,0.2);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));overflow:hidden;">
-                    <sc-for list="{{ m.pvCols }}" as="c" hint-placeholder-count="3">
+                  <div style="display:flex;flex-direction:row;gap:8px;align-items:center;flex-wrap:wrap;margin-top:-4px;">
+                    <span style="display:flex;flex-direction:row;gap:5px;align-items:center;height:26px;padding:0 10px;border-radius:999px;background-color:rgba(2,26,50,0.05);font-size:12px;font-weight:500;color:var(--t2);white-space:nowrap;"><span style="font-weight:700;color:#021A32;">{{ m.pvScore }}</span><span style="color:var(--dim);">/100 fit</span></span>
+                    <span style="display:flex;flex-direction:row;gap:6px;align-items:center;height:26px;padding:0 10px;border-radius:999px;background-color:#E3F1EA;font-size:12px;font-weight:600;color:#107435;white-space:nowrap;"><svg width="11" height="11" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>{{ m.mvRec }}</span>
+                  </div>
+                  <div style="border-radius:18px;background-color:var(--card);box-shadow:inset 0 0 0 1px rgba(2,26,50,0.07),0 1px 2px rgba(2,26,50,0.04),0 12px 32px -22px rgba(2,26,50,0.2);display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));">
+                    <sc-for list="{{ m.mvCols }}" as="c" hint-placeholder-count="3">
                       <div style="{{ c.wrap }}">
-                        <div style="display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:8px;"><span style="display:flex;flex-direction:row;gap:8px;align-items:center;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);"><span style="width:26px;height:26px;border-radius:8px;background-color:{{ c.tint }};color:{{ c.col }};display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ c.ico }}"></path></svg></span>{{ c.label }}</span><span style="font-size:13px;font-weight:600;color:{{ c.col }};white-space:nowrap;">{{ c.level }}</span></div>
-                        <div style="display:flex;flex-direction:column;gap:2px;">
-                          <span style="font-weight:600;font-size:30px;line-height:34px;letter-spacing:-1px;color:var(--t1);font-variant-numeric:tabular-nums;">{{ c.big }}</span>
-                          <span style="font-size:12px;color:var(--mut);">{{ c.unit }}</span>
-                        </div>
+                        <div style="display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:8px;"><span style="display:flex;flex-direction:row;gap:8px;align-items:center;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);"><span style="{{ c.icoStyle }}"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ c.ico }}"></path></svg></span>{{ c.label }}</span><span style="{{ c.lvStyle }}">{{ c.level }}</span></div>
+                        <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-weight:600;font-size:30px;line-height:34px;letter-spacing:-1px;color:var(--t1);font-variant-numeric:tabular-nums;">{{ c.big }}</span><span style="font-size:12px;color:var(--mut);">{{ c.unit }}</span></div>
                         <div style="display:flex;flex-direction:row;gap:4px;"><sc-for list="{{ c.segs }}" as="g" hint-placeholder-count="5"><span style="{{ g }}"></span></sc-for></div>
                         <span style="font-size:13px;line-height:19px;color:var(--t4);text-wrap:pretty;">{{ c.read }}</span>
                       </div>
                     </sc-for>
                   </div>
-                  <div style="display:flex;flex-direction:row;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background-color:rgba(42,92,175,0.07);box-shadow:inset 0 0 0 1px rgba(42,92,175,0.22);"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#1F4E9E" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:1px;"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"></path></svg><div style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-size:12px;font-weight:600;letter-spacing:0.02em;color:#1F4E9E;">What this means</span><span style="font-size:15px;line-height:23px;color:var(--t1);text-wrap:pretty;">{{ m.pvWhy }}</span></div></div>
-                  <div style="display:flex;flex-direction:row;gap:8px;align-items:center;flex-wrap:wrap;"><span style="font-size:13px;font-weight:600;color:var(--t1);">Ask next</span><sc-for list="{{ m.pvChips }}" as="ch" hint-placeholder-count="3"><button type="button" data-b="c" sc-camel-on-click="{{ ch.onClick }}">{{ ch.label }}</button></sc-for></div></sc-if></div><div style="position:sticky;bottom:0;z-index:5;margin:10px -4px -4px;padding:28px 4px 8px;background:linear-gradient(to bottom,rgba(250,251,253,0) 0%,rgba(250,251,253,0.92) 55%,#FAFBFD 100%);display:flex;flex-direction:row;justify-content:flex-end;align-items:center;"><button type="button" data-b="p" sc-camel-on-click="{{ m.openApp }}">Open full analysis<svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
-                
+                  <div style="display:flex;flex-direction:row;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background-color:rgba(42,92,175,0.06);box-shadow:inset 0 0 0 1px rgba(42,92,175,0.18);"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#1F4E9E" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:1px;"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"></path></svg><div style="display:flex;flex-direction:column;gap:2px;min-width:0;"><span style="font-size:13px;font-weight:600;color:var(--t1);">What this means</span><span style="font-size:15px;line-height:23px;color:var(--t1);text-wrap:pretty;">{{ m.pvWhy }}</span></div></div>
+                  <div style="display:flex;flex-direction:column;gap:10px;">
+                    <span style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);">Decide next</span>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;">
+                      <sc-for list="{{ m.mvDecide }}" as="d" hint-placeholder-count="3">
+                        <div style="display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-radius:12px;background-color:var(--card);box-shadow:inset 0 0 0 1px rgba(2,26,50,0.08);min-width:0;">
+                          <span style="display:flex;flex-direction:row;gap:7px;align-items:center;font-size:12.5px;color:var(--t3);"><svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ d.ico }}"></path></svg>{{ d.label }}</span>
+                          <span style="font-weight:600;font-size:15px;line-height:21px;color:var(--t1);text-wrap:pretty;">{{ d.value }}</span>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <div style="{{ m.mvFullStyle }}">
+                    <span style="{{ m.mvFullIco }}"><sc-if value="{{ m.mvBuilding }}"><span style="width:16px;height:16px;border-radius:50%;border:2.5px solid rgba(240,120,43,0.3);border-top-color:#F0782B;animation:aSpin .8s linear infinite;"></span></sc-if><sc-if value="{{ m.mvFullReady }}"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#F0782B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h6"></path></svg></sc-if></span>
+                    <div style="display:flex;flex-direction:column;gap:6px;min-width:0;">
+                      <span style="font-weight:600;font-size:14.5px;line-height:20px;color:var(--t1);" aria-live="polite">{{ m.mvFullTitle }}</span>
+                      <sc-if value="{{ m.mvBuilding }}"><div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;"><sc-for list="{{ m.mvPills }}" as="pl" hint-placeholder-count="5"><span style="{{ pl.style }}"><span style="{{ pl.dot }}"></span>{{ pl.label }}</span></sc-for></div><span style="font-size:12.5px;color:var(--t3);">You can keep asking questions. I'll let you know when it's ready.</span></sc-if>
+                      <sc-if value="{{ m.mvFullReady }}"><span style="font-size:12.5px;line-height:18px;color:var(--t3);">5 sections · overview, supply, demand, cost and top skills</span></sc-if>
+                    </div>
+                    <button type="button" data-b="p" disabled="{{ m.mvBuilding }}" sc-camel-on-click="{{ m.openApp }}">Open full analysis<svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></button>
+                  </div>
+                  <div style="display:flex;flex-direction:row;gap:8px;align-items:center;flex-wrap:wrap;"><sc-for list="{{ m.mvChips }}" as="ch" hint-placeholder-count="3"><button type="button" data-mi="chip" sc-camel-on-click="{{ ch.onClick }}" style="display:flex;flex-direction:row;gap:7px;align-items:center;height:34px;padding:0 14px;border-radius:999px;border:0;background-color:var(--card);box-shadow:inset 0 0 0 1px rgba(2,26,50,0.1);font:inherit;font-size:13.5px;color:var(--t2);cursor:pointer;transition:box-shadow .15s ease,color .15s ease;"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--dim);"><path d="M9 10l-5 5 5 5M20 4v7a4 4 0 0 1-4 4H4"></path></svg>{{ ch.label }}</button></sc-for></div>
+                </sc-if>
               </div>
             </sc-if>
             <sc-if value="{{ m.showRef }}">
@@ -1311,7 +1367,7 @@ const MODES = {
   market: { short: "Supply, demand and cost by market", title: "Market intelligence", live: true, desc: "Where is it easiest to hire? Supply, demand and cost for a role, side by side across markets.", gets: ["Supply, demand and cost", "Market comparison", "Full analysis"], hint: "Name a role — add a country or market if you have one", cta: "Open market intelligence" },
 };
 const FGRAD = { auto: ["#2F5E96", "#021A32", "2,26,50"], req: ["#E07A35", "#C65C10", "198,92,16"], job: ["#2DA394", "#0B6F62", "11,111,98"], policy: ["#2E9A6E", "#158056", "21,128,86"], market: ["#4A7BC4", "#2358A6", "35,88,166"], _old: ["#2F5E96", "#021A32", "2,26,50"] };
-const FICO = { auto: "M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 3v4M21 5h-4", req: "M3 7h18v13H3zM8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", job: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5", policy: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z", market: "M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20zM2 12h20M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20z" };
+const FICO = { auto: "M6 16a3 3 0 1 0 0 6a3 3 0 1 0 0-6zM9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15M18 2a3 3 0 1 0 0 6a3 3 0 1 0 0-6z", req: "M3 7h18v13H3zM8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", job: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5", policy: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z", market: "M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20zM2 12h20M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20z" };
 const chipsOf = (a) => a.map((l) => ({ label: l, send: l }));
 const RF0 = () => ({ role: "Cloud technology consultant", location: "Columbus, OH", start: "1 Dec 2026", duration: "6 months", rate: "$68–$84 / hr" });
 const RQ_STEPS = ["Details", "Rate check", "Policy check", "Review", "Submit"];
@@ -1325,7 +1381,7 @@ class Component extends DCLogic {
       h("span", { style: a({ inset: 0, backgroundImage: "conic-gradient(from 0deg,#F0782B,#FFC08A,#7CABF9,#2A5CAF,#F0782B)", animation: "aOrbMorph 7s ease-in-out infinite, aOrbSpin " + (active ? 3 : 9) + "s linear infinite" }) }),
       h("span", { style: a({ inset: 3, borderRadius: "50%", backgroundImage: "radial-gradient(circle at 35% 30%,rgba(255,255,255,0.95),rgba(255,255,255,0.15) 55%,rgba(255,255,255,0) 70%)" }) }));
   }
-  state = { rq: { on: false, step: 0, st: "idle" }, rf: null, rfEdit: null, att: null, sendErr: "", newBelow: false, searchOpen: false, searchQ: "", hov2: null, now: Date.now(), rot: 0, themePref: "light", user: null, voiceName: "", reading: false, bargeOn: true, vc: false, vcNoMic: "", vcPhase: "ask", vcCap: "", vcLev: [], vcMuted: false, voice: false, vtext: "", vt0: 0, vmode: "ask", vlev: [], verr: "", notifOpen: false, seenAt: 0, homeCountry: "United States", events: [], briefT0: 0, briefT1: 0, profileOpen: false, flash: false, expanded: false, feat: "auto", sc: "market", mode: "home", sbOpen: true, draft: "", msgs: [], sl: { occ: null, country: null, live: false, proxy: null, locs: [] }, awaiting: null, briefId: null, ss: {}, sp: {}, hover: null, focus: null, ready: false };
+  state = { bp: 1, scrolled: false, rowMenu: null, rename: null, confirmDel: null, toast: null, recents: [{ id: "r1", title: "Starting a contractor assistance…", pinned: false }, { id: "r2", title: "Job analysis · Program manager", pinned: false }, { id: "r3", title: "Cloud technology consultant", pinned: false }], rq: { on: false, step: 0, st: "idle" }, rf: null, rfEdit: null, att: null, sendErr: "", newBelow: false, searchOpen: false, searchQ: "", hov2: null, now: Date.now(), rot: 0, themePref: "light", user: null, voiceName: "", reading: false, bargeOn: true, vc: false, vcNoMic: "", vcPhase: "ask", vcCap: "", vcLev: [], vcMuted: false, voice: false, vtext: "", vt0: 0, vmode: "ask", vlev: [], verr: "", notifOpen: false, seenAt: 0, homeCountry: "United States", events: [], briefT0: 0, briefT1: 0, profileOpen: false, flash: false, expanded: false, feat: "auto", sc: "market", mode: "home", sbOpen: true, draft: "", msgs: [], sl: { occ: null, country: null, live: false, proxy: null, locs: [] }, awaiting: null, briefId: null, ss: {}, sp: {}, hover: null, focus: null, ready: false };
   chatRef = React.createRef();
   homeTa = React.createRef();
   panelRef = React.createRef();
@@ -1339,18 +1395,30 @@ class Component extends DCLogic {
 
   componentDidUpdate(pp, ps) {
     if (!ps) return;
+    if (ps.mode !== this.state.mode && this.state.scrolled) this.setState({ scrolled: false });
     if (ps.msgs !== this.state.msgs && this.chatRef.current) { const el = this.chatRef.current; const lenCh = ps.msgs.length !== this.state.msgs.length; if (this._atB !== false) { el.scrollTop = el.scrollHeight; this._atB = true; } else if (lenCh && !this.state.newBelow) this.setState({ newBelow: true }); }
   }
+  showToast(msg, undo) { clearTimeout(this._tt); this.setState({ toast: { msg, undo: undo || null } }); this._tt = setTimeout(() => this.setState({ toast: null }), 6000); }
+  rmOpen(id, e) { e.stopPropagation(); const cur = this.state.rowMenu; if (cur && cur.id === id) { this.setState({ rowMenu: null }); return; } const r = e.currentTarget.getBoundingClientRect(); this.setState({ rowMenu: { id, x: Math.round(r.right + 8), y: Math.max(8, Math.min(Math.round(r.top - 6), window.innerHeight - 270)) } }); }
+  rmId() { return this.state.rowMenu ? this.state.rowMenu.id : null; }
+  rmPin() { const id = this.rmId(); this.setState((st) => ({ rowMenu: null, recents: st.recents.map((r) => (r.id === id ? { ...r, pinned: !r.pinned } : r)) })); }
+  rmRename() { this.setState({ rename: this.rmId(), rowMenu: null }); }
+  rmCommit(id, val) { if (this.state.rename !== id) return; const v = (val || "").trim(); this.setState((st) => ({ rename: null, recents: st.recents.map((r) => (r.id === id && v ? { ...r, title: v } : r)) })); }
+  rmShare() { const id = this.rmId(); this.setState({ rowMenu: null }); try { navigator.clipboard && navigator.clipboard.writeText("https://acumen.example/chat/" + id); } catch (e) {} this.showToast("Link copied"); }
+  rmArchive() { const id = this.rmId(), prev = this.state.recents; this.setState({ rowMenu: null, recents: prev.filter((r) => r.id !== id) }); this.showToast("Chat archived", () => this.setState({ recents: prev, toast: null })); }
+  rmDelete() { this.setState({ confirmDel: this.rmId(), rowMenu: null }); }
+  rmDeleteGo() { const id = this.state.confirmDel; this.setState((st) => ({ confirmDel: null, recents: st.recents.filter((r) => r.id !== id) })); this.showToast("Chat deleted"); }
   componentDidMount() {
     if (window.speechSynthesis) { speechSynthesis.onvoiceschanged = () => { this._pv = null; }; speechSynthesis.getVoices(); }
     this._kh = (e) => { if (this.state.mode !== "home" || /TEXTAREA|INPUT/.test((e.target || {}).tagName || "")) return; if (e.key === "1") this.startMkt(); else if (e.key === "2") this.startFeat("req", "Start a contractor request"); else if (e.key === "3") this.startFeat("job", "Analyse a job description"); };
-    window.addEventListener("keydown", this._kh); this._clk = setInterval(() => this.setState({ now: Date.now() }), 1000); this._rot = setInterval(() => { if (this.state.mode === "home" && !this.state.draft) this.setState((st) => ({ rot: (st.rot + 1) % ROTOR.length })); }, 3600); this._mm = (e) => { if (this.state.modeMenu && !(e.target.closest && e.target.closest("[data-modemenu]"))) this.setState({ modeMenu: false }); }; document.addEventListener("mousedown", this._mm); this._esc = (e) => { if (e.key === "Escape" && this.state.expanded) this.setState({ expanded: false }); }; window.addEventListener("keydown", this._esc); }
+    window.addEventListener("keydown", this._kh); this._clk = setInterval(() => this.setState({ now: Date.now() }), 1000); this._rot = setInterval(() => { if (this.state.mode === "home" && !this.state.draft) this.setState((st) => ({ rot: (st.rot + 1) % ROTOR.length })); }, 3600); this._mm = (e) => { if (this.state.modeMenu && !(e.target.closest && e.target.closest("[data-modemenu]"))) this.setState({ modeMenu: false }); if (this.state.rowMenu && !(e.target.closest && e.target.closest("[data-rowmenu],[data-rmore]"))) this.setState({ rowMenu: null }); }; document.addEventListener("mousedown", this._mm); this._esc = (e) => { if (e.key !== "Escape") return; if (this.state.confirmDel) this.setState({ confirmDel: null }); else if (this.state.rowMenu) this.setState({ rowMenu: null }); else if (this.state.expanded) this.setState({ expanded: false }); }; window.addEventListener("keydown", this._esc); }
   componentWillUnmount() { document.removeEventListener("mousedown", this._mm); this.micStop(); this.vcTeardown(); clearInterval(this._clk); clearInterval(this._rot); window.removeEventListener("keydown", this._esc); window.removeEventListener("keydown", this._kh); this.timers.forEach(clearTimeout); }
   _rm() { try { return window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (x) { return false; } }
   later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
   push(m) { if (m.kind === "ask" && m.question) this.speak(m.question); const id = ++this._id; this.setState((st) => ({ msgs: st.msgs.concat([{ id, ...m }]) })); return id; }
   patch(id, p) { this.setState((st) => ({ msgs: st.msgs.map((m) => (m.id === id ? { ...m, ...(typeof p === "function" ? p(m) : p) } : m)) })); }
-  syncSl() { this.saveLast(); this.setState({ sl: { occ: this.sl.occ, country: this.sl.country, live: this.sl.live, proxy: this.sl.proxy, locs: this.sl.locs.slice() } }); this.progress(); }
+  syncSl() { this.saveLast(); this.setState({ sl: { occ: this.sl.occ, country: this.sl.country, live: this.sl.live, proxy: this.sl.proxy, locs: this.sl.locs.slice() } }); this.progress(); this.ensureBrief(); }
+  ensureBrief() { if (this.briefId && !this._bm && this.complete()) { this._bm = true; this.setState({ bp: 0 }); this.push({ role: "agent", kind: "brief" }); } }
   setAwait(a) { this.awaiting = a; this.setState({ awaiting: a }); }
   say(text, then, chips) {
     const id = this.push({ role: "agent", kind: "text", text: "", chips: chips || null });
@@ -1461,7 +1529,8 @@ class Component extends DCLogic {
     ];
     const id = this.push({ role: "agent", kind: "trace", t0: Date.now(), title: "Understanding your request", steps });
     this.stepper(id, 5, 300, () => {
-      if (!this.briefId) { this.briefId = this._id + 1; this.push({ role: "agent", kind: "brief" }); this.setState({ briefId: this.briefId, sbOpen: false, briefT0: Date.now(), briefT1: 0 }); this.progress(); }
+      if (!this.briefId) { this.briefId = this._id + 1; this.setState({ briefId: this.briefId, sbOpen: false, briefT0: Date.now(), briefT1: 0 }); this.progress(); }
+      this.ensureBrief();
       this.later(() => this.next(), 300);
     });
   }
@@ -1478,9 +1547,9 @@ class Component extends DCLogic {
     if (slot === "occ") this.push({ role: "agent", kind: "ask", slot, question: lead + "Which role should I benchmark?", options: Object.keys(OCC).map((n) => ({ label: n, sub: OCC[n].fam, tag: "", value: n })) });
     else if (slot === "country") this.push({ role: "agent", kind: "ask", slot, question: lead + "Which country is this hire in?", options: COUNTRIES.map((c) => ({ label: c.n, sub: c.sub, tag: c.live ? "Live" : "Not live yet", value: c.n })) });
     else {
-      const opts = ORDER.map((n) => ({ label: n, sub: "Supply " + MK[n].sup + " · Demand " + MK[n].dem + " · Cost " + MK[n].cost, tag: MK[n].cond, value: [n] }));
-      opts.push({ label: "Compare New York · Dallas · Bay Area", sub: "Side by side on the three pinned markets", tag: "", value: PIN.slice() });
-      this.push({ role: "agent", kind: "ask", slot, question: lead + "Which market in the US" + (sl.occ ? " for a " + sl.occ : "") + "?", options: opts });
+      const opts = ORDER.slice(0, 4).map((n) => ({ label: MK[n].short, sub: "United States", tag: "", value: [n] }));
+      opts.push({ label: "Compare New York · Dallas · Bay Area", sub: "Side by side on the three pinned markets", tag: "", value: PIN.slice(), wide: true });
+      this.push({ role: "agent", kind: "ask", slot, occ: sl.occ, question: lead + "Which market in the US" + (sl.occ ? " for a " + sl.occ : "") + "?", options: opts });
     }
     this.setAwait(slot);
   }
@@ -1533,6 +1602,7 @@ class Component extends DCLogic {
     }
     this.setAwait(null); this.syncSl();
     if (slot === "country" && !sl.live) return this.later(() => this.coverage(), 250);
+    if (slot === "loc" && this.complete()) return this.later(() => this.next(), 220);
     this.later(() => this.say(msg, () => this.later(() => this.next(), 200)), 220);
   }
 
@@ -1567,10 +1637,14 @@ class Component extends DCLogic {
   }
   checkReady() {
     if (this.ready || !SECS.every(([k]) => this.fin[k])) return;
-    this.ready = true; this.setState({ ready: true, briefT1: Date.now() });
+    this.ready = true; this.setState({ ready: true, briefT1: Date.now(), bp: 0 }); this.buildAnim();
     const sl = this.sl, M = MK[sl.locs[0]], c = this.calc(sl.occ, sl.locs[0]);
     this.say("That's the overview for " + M.short + ". Ask a follow-up, or open the full analysis when you want the detail.", () => { if (sl.compare && sl.locs.length > 1) this.doCompare(sl.locs); });
     sl.compare = false;
+  }
+  buildAnim() {
+    const t0 = performance.now(), run = (now) => { if (!this.ready) return; const p = Math.min(1, (now - t0) / 5500); this.setState({ bp: p }); if (p < 1) requestAnimationFrame(run); };
+    requestAnimationFrame(run);
   }
   jump(key) {
     const el = this.panelRef.current && this.panelRef.current.querySelector(key === "brief" ? "[data-brief]" : '[data-sec="' + key + '"]');
@@ -1749,7 +1823,7 @@ class Component extends DCLogic {
       rqBar: { on: rq.on, n: rq.step, label: RQ_STEPS[rq.step - 1] || "", segs: RQ_STEPS.map((_, i) => ({ style: "flex:1;height:4px;border-radius:2px;background-color:" + col(i) + ";" })), working: rq.st === "working", waiting: rq.st === "waiting", idle: rq.st === "done", failed: rq.st === "failed", canCancel: rq.st === "working" || rq.st === "waiting", cancel: () => this.stopRun(true) },
       busy, notBusy: !busy, stopRun: () => this.stopRun(), sendOff: !busy && !!reason, helper: reason || "Enter to send · Shift + Enter for a new line",
       newBelow: !!s.newBelow, sendErr: s.sendErr, retrySend: () => this.send(this.state.draft),
-      onChatScroll: (e) => { const el = e.currentTarget, at = el.scrollHeight - el.scrollTop - el.clientHeight < 72; this._atB = at; if (at && this.state.newBelow) this.setState({ newBelow: false }); },
+      onChatScroll: (e) => { const el = e.currentTarget, at = el.scrollHeight - el.scrollTop - el.clientHeight < 72; const sc = el.scrollTop > 4; if (sc !== this.state.scrolled) this.setState({ scrolled: sc }); this._atB = at; if (at && this.state.newBelow) this.setState({ newBelow: false }); },
       jumpLatest: () => { const el = this.chatRef.current; if (el) el.scrollTo({ top: el.scrollHeight, behavior: this._rm() ? "auto" : "smooth" }); this._atB = true; this.setState({ newBelow: false }); },
       kbClick: (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.currentTarget.click(); } },
       fileRef: (el) => { this._fi = el; }, attachPick: () => { if (this._fi) this._fi.click(); },
@@ -1793,11 +1867,14 @@ class Component extends DCLogic {
   }
   startMkt() {
     this.setState({ mode: "chat", feat: "market" });
-    this.later(() => this.say("Market intelligence. Tell me the role you're hiring for, plus a country and market if you have them. I'll ask only for what's missing and start pulling data right away.", null, chipsOf(["What does the market look like for a Technical Support Manager?", "Compare a Data Engineer in the Bay Area vs Dallas"])), 200);
+    this.later(() => this.push({ role: "agent", kind: "mintro", cards: [
+      { title: "What does the market look like for a Technical Support Manager?", sub: "I'll ask only for the market" },
+      { title: "Hiring a Technical Support Manager in the Bay Area. Is it realistic?", sub: "Full analysis for one market" },
+      { title: "Where is it cheapest to hire a Technical Support Manager in the US?", sub: "Starts with a remote US baseline" }] }), 120);
   }
   newChat = () => {
     this.timers.forEach(clearTimeout); this.timers = [];
-    this.sl = { occ: null, country: null, live: false, proxy: null, locs: [], compare: false }; this.ld = {}; this.fin = {}; this.ready = false; this.briefId = null; this.awaiting = null; this.fromProfile = false; this.fromLastOcc = false; this.fromLastLoc = false;
+    this.sl = { occ: null, country: null, live: false, proxy: null, locs: [], compare: false }; this.ld = {}; this.fin = {}; this.ready = false; this.briefId = null; this._bm = false; this.awaiting = null; this.fromProfile = false; this.fromLastOcc = false; this.fromLastLoc = false;
     this._rqQA = false; this._failedOnce = false; this.setState({ rq: { on: false, step: 0, st: "idle" }, rf: null, rfEdit: null, att: null, sendErr: "" });
     this.setState({ events: [], briefT0: 0, briefT1: 0, mode: "home", sbOpen: true, draft: "", msgs: [], sl: { occ: null, country: null, live: false, proxy: null, locs: [] }, awaiting: null, briefId: null, ss: {}, sp: {}, hover: null, focus: null, ready: false });
   };
@@ -2020,18 +2097,62 @@ class Component extends DCLogic {
       pvTake: M.short + " is a good place to hire a " + occ + ". " + f[0] + ", " + f[1].toLowerCase() + " and " + f[2].toLowerCase() + ".",
       pvMeters: B.meters.map((x, i) => ({ label: x.label, value: x.value, segs: x.segs, col: i === 0 ? "rgba(74,131,224,0.55)" : i === 1 ? "rgba(240,120,43,0.6)" : "rgba(61,184,130,0.6)", dot: "#4A83E0", caption: B.facts[i].title, pin: "position:absolute;top:-4px;width:4px;height:18px;border-radius:3px;background-color:var(--t1);left:calc(" + (((LV[x.value] || 3) - 0.5) * 20) + "% - 2px);" })),
       ...this.pvCols(occ, sl.locs[0] || "Greater New York"),
+      ...this.mv(s, m),
       pvCtxLine: occ + " · " + M.short + " · 2s",
       pvAnswer: M.short + " is " + M.cond.toLowerCase() + " for hiring a " + occ + ".",
       pvWorked: "Worked for 2 sec", pvLead: M.short + " looks " + M.cond.toLowerCase() + " for this search. Here’s the market breakdown:", pvOcc: occ, pvCountry: M.country || "United States",
       pvHeadline: M.short + " is a " + (M.cond === "Very favourable" ? "strong" : "workable") + " market for your next hire",
       pvSub: f[0] + ", " + f[1].toLowerCase() + " and " + f[2].toLowerCase() + ", so you can plan with confidence.",
-      pvWhy: "You can reach a broad candidate pool quickly. Lead with role impact and growth to offset premium pay expectations.",
+      pvWhy: this.why(M),
       pvSignals: B.meters.map((x, i) => { const pct = Math.min(100, Math.max(12, (LV[x.value] || 3) * 20)), C = [["#158056", "#E3F1EA", "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"], ["#2358A6", "#E6EEF8", "M6 20V10M12 20V4M18 20v-7"], ["#C65C10", "#FDEEE2", "M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"]][i % 3]; return { label: x.label, value: x.value, pct, score: Math.round(pct * 0.9 + 6), col: C[0], tint: C[1], icon: C[2], caption: B.facts[i].title }; }),
       pvInterp: "",
       pvChips: ["Who is in the talent pool?", "Compare with Dallas", "Top skills"].map((label) => ({ label, onClick: () => this.send(label) })),
       pvHelper: "Continue with " + occ + " and " + M.short + " pre-selected.",
       pvCtaStyle: "height:34px;border-radius:999px;background-color:#021A32;color:#fff;display:flex;flex-direction:row;gap:8px;align-items:center;padding:0 16px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;transition:transform .12s ease;" + (s.ready ? "" : "opacity:.45;pointer-events:none;"),
       openApp: () => { this.setState((st) => ({ appMode: true, sbOpen: false, appFrom: st.appMode ? st.appFrom : st.msgs.length })); this.later(() => { const p = this.panelRef.current; if (p) p.scrollTo({ top: 0 }); }, 60); },
+    };
+  }
+  why(M) {
+    const sv = LV[M.sup] || 3, cv = LV[M.cost] || 3;
+    const a = sv >= 4 ? "You can reach a broad candidate pool quickly." : sv === 3 ? "Expect a normal search with a steady pool." : "The pool is thin, so widen the search early.";
+    const b = cv >= 4 ? "Lead with role impact and growth to offset premium pay expectations." : cv === 3 ? "Pay should sit close to the market rate." : "Pay is below the national rate, which leaves room in your budget.";
+    return a + " " + b;
+  }
+  mv(s, m) {
+    const sl = s.sl, occ = sl.occ || "this role", loc = sl.locs[0] || "Greater New York", c = this.calc(occ, loc), M = c.M, n = (x) => Math.round(x).toLocaleString("en-US");
+    const med = c.cLo + (c.cHi - c.cLo) * 0.42, rLo = Math.round(med * 0.87), rHi = Math.round(med * 1.15);
+    const sv = LV[M.sup] || 3, dv = LV[M.dem] || 3, cv = LV[M.cost] || 3, days = Math.round(18 + dv * 4 + (5 - sv) * 3 + (cv - 3) * 2);
+    const done = (k) => s.ss[k] === "done" && (s.sp[k] || 0) >= 1;
+    const L = [
+      { label: "Reading the request: " + occ, ok: true },
+      { label: "Finding the market: " + M.short + ", " + (M.country || "United States"), ok: true },
+      { label: "Counting qualified talent: " + n(c.workforce) + " people", ok: done("supply") },
+      { label: "Scanning open roles: " + n(c.postings) + " competing roles", ok: done("demand") },
+      { label: "Checking bill rates: $" + rLo + "–$" + rHi + "/hr", ok: done("cost") },
+      { label: "Writing the verdict", ok: !!s.ready },
+    ];
+    let cur = -1; for (let i = 0; i < L.length; i++) { if (!L[i].ok) { cur = i; break; } }
+    const ready = !!s.ready, vis = ready ? L : L.slice(0, cur + 1), el = Math.max(0.1, ((s.briefT1 || s.now) - (s.briefT0 || s.now)) / 1000);
+    const open = m.open === undefined ? !ready : !!m.open;
+    const bp = s.bp === undefined ? 1 : s.bp, pct = Math.round(bp * 100), building = ready && bp < 1, fullReady = ready && bp >= 1;
+    const secs = [["Overview", 0], ["Talent supply", 0.2], ["Demand", 0.4], ["Cost", 0.6], ["Top skills", 0.8]], at = secs.findIndex(([, st]) => bp < st + 0.2);
+    const ICO = { Supply: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 3a4 4 0 1 0 0 8a4 4 0 1 0 0-8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75", Demand: "M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z", Cost: "M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" };
+    const cols = this.pvCols(occ, loc).pvCols.map((x) => ({ ...x, ico: ICO[x.label], icoStyle: "width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:" + x.col + ";background-color:" + x.tint + ";", lvStyle: "font-size:13px;font-weight:600;color:" + x.col + ";" }));
+    return {
+      mvCtx: occ + " · " + M.short + (ready ? " · " + Math.round(el) + "s" : ""),
+      mvHead: ready ? "Completed " + L.length + " steps in " + el.toFixed(1) + "s" : (cur >= 0 ? L[cur].label : ""),
+      mvHeadStyle: ready ? "font-size:14px;color:var(--mut);" : "font-size:14px;font-weight:500;color:var(--t1);",
+      mvChev: "flex-shrink:0;color:var(--dim);transition:transform .2s ease;" + (open ? "transform:rotate(90deg);" : ""),
+      mvOpen: open, mvToggle: () => this.patch(m.id, { open: !open }),
+      mvSteps: vis.map((x, i) => { const run = !ready && i === cur; return { label: x.label, dot: "width:8px;height:8px;border-radius:50%;flex-shrink:0;margin:0 3px;background-color:" + (run ? "#021A32" : "#2FBF7F") + ";", style: "font-size:14px;line-height:20px;color:" + (run ? "var(--t1)" : "var(--mut)") + ";" }; }),
+      mvCols: cols, mvRingLabel: Math.round(M.score) + " out of 100 fit", mvRec: M.cond === "Very favourable" ? "Recommendation: Proceed" : "Recommendation: Proceed with care",
+      mvDecide: [{ label: "Rate range", value: "$" + rLo + "–$" + rHi + "/hr", ico: "M3 7h18v12H3zM3 7l3-3h12l3 3M16 13h2" }, { label: "Time to fill", value: "About " + days + " days", ico: "M12 7v5l3 2M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" }, { label: "Best channel", value: sv >= 4 ? "Referral programs at similar employers" : "Targeted sourcing and agency partners", ico: "M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1zM15 9a4 4 0 0 1 0 6" }],
+      mvBuilding: building, mvFullReady: fullReady,
+      mvFullStyle: "display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 16px;border-radius:16px;" + (fullReady ? "background-color:var(--card);box-shadow:inset 0 0 0 1px rgba(2,26,50,0.08),0 12px 32px -22px rgba(2,26,50,0.25);" : "background-color:transparent;box-shadow:inset 0 0 0 1px rgba(2,26,50,0.18);border:0;"),
+      mvFullIco: "width:36px;height:36px;border-radius:11px;display:flex;align-items:center;justify-content:center;" + (fullReady ? "background-color:#021A32;" : "background-color:rgba(240,120,43,0.12);"),
+      mvFullTitle: fullReady ? "Full analysis ready" : "Building the full analysis · " + pct + "%",
+      mvPills: secs.map(([label], i) => ({ label, style: "display:flex;flex-direction:row;gap:6px;align-items:center;color:" + (i === at ? "var(--t1);font-weight:600" : "var(--dim)") + ";", dot: "width:6px;height:6px;border-radius:50%;background-color:" + (i < at ? "#2FBF7F" : i === at ? "#021A32" : "rgba(2,26,50,0.18)") + ";" })),
+      mvChips: [["Compare other markets", "Compare New York, Dallas and Bay Area"], ["Who is in the talent pool?", "Who is in the talent pool?"], ["Show me the cost picture", "Show me the cost picture"]].map(([label, q]) => ({ label, onClick: () => this.send(q) })),
     };
   }
   pvCols(occ, loc) {
@@ -2237,20 +2358,25 @@ class Component extends DCLogic {
       const running = steps.some((x) => x.status === "run") || (isTrace && steps.every((x) => x.status === "pend")), finished = isTrace && !running && steps.every((x) => x.status !== "pend");
       const open = isTrace && !!m.open;
       const o = {
-        id: m.id, ...this.rqMsg(m, s), isUser: m.role === "user", isText: m.kind === "text", isTrace, isAsk: m.kind === "ask", isBrief: m.kind === "brief", isCompare: m.kind === "compare",
+        id: m.id, ...this.rqMsg(m, s), isIntro: m.kind === "mintro", introOpen: m.kind === "mintro" && !m.picked && m.id === lastId, introClosed: m.kind === "mintro" && (!!m.picked || m.id !== lastId), introPicked: m.picked || "", introCards: (m.cards || []).map((c) => ({ title: c.title, sub: c.sub, onClick: () => { this.patch(m.id, { picked: c.title }); this.send(c.title); } })), isUser: m.role === "user", isText: m.kind === "text", isTrace, isAsk: m.kind === "ask", isBrief: m.kind === "brief", isCompare: m.kind === "compare",
         text: m.text || "", typing: m.kind === "text" && !m.text, title: m.title, question: m.question, answer: m.answer,
         slotLabel: m.slot === "occ" ? "Role" : m.slot === "country" ? "Country" : "Market",
         askOpen: m.kind === "ask" && !m.answered, askDone: m.kind === "ask" && !!m.answered,
         running, finished, finishedOk: finished && !m.failed && !steps.some((x) => x.status === "warn"), open, toggle: () => this.patch(m.id, { open: !m.open }),
         head: running ? (m.title || "Working") + "…" : (m.failed ? (m.failHead || "Failed") : m.doneHead ? m.doneHead : "Worked for " + Math.max(1, Math.round(((m.t1 || s.now) - (m.t0 || s.now)) / 1000)) + " sec"),
-        ctx: (m.ctx || []).map((c) => ({ label: c.label, icoStyle: "display:flex;align-items:center;color:" + c.col + ";" })), hasCtx: false, showTrace: isTrace && !(finished && !m.failed && !steps.some((x) => x.status === "warn")), refTime,
+        ctx: (m.ctx || []).map((c) => ({ label: c.label, icoStyle: "display:flex;align-items:center;color:" + c.col + ";" })), hasCtx: false, showTrace: isTrace && !(finished && (m.title === "Understanding your request" || (!m.failed && !steps.some((x) => x.status === "warn")))), refTime,
         titleStyle: running ? "font-size:14px;font-weight:500;background-image:linear-gradient(90deg,var(--mut) 40%,var(--t1) 50%,var(--mut) 60%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:aTxt 1.6s linear infinite;" : m.failed ? "font-size:14px;font-weight:600;color:#AA3030;" : "font-size:14px;color:var(--mut);",
         summary: running ? ((steps.find((x) => x.status === "run") || {}).label || "") + "…" : (m.sum || ""),
         chevStyle: "flex-shrink:0;color:var(--dim);transition:transform .2s ease;" + (open ? "transform:rotate(90deg);" : ""),
         steps: steps.map((x) => ({ label: x.label, detail: x.detail || "", run: x.status === "run", done: x.status === "done", warn: x.status === "warn", pend: x.status === "pend",
           labelStyle: "font-size:14px;color:" + (x.status === "pend" ? "var(--dim2)" : x.status === "run" ? "var(--t1)" : "var(--t4)") + ";",
           detailStyle: "font-size:12px;margin-left:auto;color:" + (x.status === "warn" ? "var(--warn)" : "var(--mut)") + ";" })),
-        options: (m.options || []).map((op) => ({ label: op.label, sub: op.sub, tag: op.tag, onPick: () => this.pickValue(m.slot, op.value, op.label),
+        askBold: m.kind === "ask" && m.slot === "loc" && !!m.occ, askPlain: m.kind === "ask" && !(m.slot === "loc" && m.occ),
+        qPre: "Sure. I have the role: ", qBold: m.occ || "", qPost: ". Which market should I check? I'll start pulling data as soon as you pick one.",
+        slotIco: m.slot === "loc" ? "M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0zM12 7.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" : m.slot === "country" ? "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z" : "M3 8h18v11H3zM8 8V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3M3 13h18",
+        isLocSlot: m.slot === "loc", tilesWrap: "display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;" + (m.answered ? "opacity:0.55;pointer-events:none;" : ""),
+        options: (m.options || []).map((op) => ({ label: op.label, sub: op.sub, tag: op.tag, sel: !!m.answered && op.label === m.answer, onPick: () => this.pickValue(m.slot, op.value, op.label),
+          tileStyle: "display:flex;flex-direction:row;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;background-color:var(--card);box-shadow:inset 0 0 0 1px rgba(2,26,50,0.08);cursor:pointer;min-width:0;transition:box-shadow .18s ease;" + (op.wide ? "grid-column:1 / -1;" : ""),
           tagStyle: op.tag ? "font-size:12px;font-weight:500;white-space:nowrap;color:" + (TONE[op.tag] || "var(--t4)") + ";" : "display:none;" })),
         chips: (m.chips && m.id === lastId && !m.picked ? m.chips : []).map((ch) => ({ label: ch.label, onClick: () => { this.patch(m.id, { picked: ch.label }); this.chipAct(ch); } })), picked: m.picked || "",
         hasChips: !!(m.chips && m.chips.length && m.id === lastId && !m.picked),
@@ -2334,11 +2460,23 @@ class Component extends DCLogic {
     return {
       sbStyle: "flex-shrink:0;overflow:hidden;height:100%;transition:width .5s cubic-bezier(.22,1,.36,1),opacity .3s ease;width:" + (s.sbOpen ? 280 : 0) + "px;opacity:" + (s.sbOpen ? 1 : 0) + ";",
       toggleSb: () => this.setState((st) => ({ sbOpen: !st.sbOpen })),
+      onMainScroll: (e) => { const v = e.currentTarget.scrollTop > 4; if (v !== this.state.scrolled) this.setState({ scrolled: v }); },
+      topBarStyle: "position:absolute;top:0;left:0;right:0;z-index:30;height:60px;display:flex;flex-direction:row;gap:14px;align-items:center;padding:0 36px 0 28px;transition:background-color .25s ease,box-shadow .25s ease,backdrop-filter .25s ease,-webkit-backdrop-filter .25s ease;" + (s.scrolled ? "background-color:color-mix(in srgb,var(--bg) 62%,transparent);-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);box-shadow:inset 0 -1px 0 rgba(var(--fg-rgb),0.06);" : "background-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;"),
+      recentRows: [...s.recents.filter((r) => r.pinned), ...s.recents.filter((r) => !r.pinned)].map((r) => { const on = !!(s.rowMenu && s.rowMenu.id === r.id); return { id: r.id, title: r.title, pinned: r.pinned, renaming: s.rename === r.id, notRenaming: s.rename !== r.id, openMenu: (e) => this.rmOpen(r.id, e),
+        moreStyle: "width:26px;height:26px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#FFFFFF;cursor:pointer;" + (on ? "opacity:1;background-color:rgba(255,255,255,0.14);" : ""),
+        onRenameKey: (e) => { if (e.key === "Enter") { e.preventDefault(); this.rmCommit(r.id, e.currentTarget.value); } else if (e.key === "Escape") { e.stopPropagation(); this.setState({ rename: null }); } },
+        onRenameBlur: (e) => this.rmCommit(r.id, e.currentTarget.value),
+        renameRef: (el) => { if (el && !this._rnf) { this._rnf = 1; el.value = r.title; setTimeout(() => { el.focus(); el.select(); }, 20); } if (!el) this._rnf = 0; } }; }),
+      rowMenuOpen: !!s.rowMenu, rowMenuStyle: s.rowMenu ? "position:fixed;z-index:90;left:" + s.rowMenu.x + "px;top:" + s.rowMenu.y + "px;width:208px;padding:6px;border-radius:16px;background-color:#FFFFFF;box-shadow:0 0 0 1px rgba(2,26,50,0.08),0 24px 56px -18px rgba(2,26,50,0.35);display:flex;flex-direction:column;gap:1px;animation:aRise .18s cubic-bezier(.22,1,.36,1) both;" : "display:none;",
+      rmPinLabel: (() => { const r = s.rowMenu && s.recents.find((x) => x.id === s.rowMenu.id); return r && r.pinned ? "Unpin" : "Pin"; })(),
+      rmPin: () => this.rmPin(), rmRename: () => this.rmRename(), rmShare: () => this.rmShare(), rmArchive: () => this.rmArchive(), rmDelete: () => this.rmDelete(),
+      confirmOpen: !!s.confirmDel, confirmCancel: () => this.setState({ confirmDel: null }), confirmGo: () => this.rmDeleteGo(),
+      toastOn: !!s.toast, toastMsg: s.toast ? s.toast.msg : "", toastHasUndo: !!(s.toast && s.toast.undo), toastUndo: () => { const u = this.state.toast && this.state.toast.undo; if (u) u(); }, toastClose: () => this.setState({ toast: null }),
       feats: FEATS.map(([k, name]) => { const on = s.feat === k, g = FGRAD[k]; return { name, on, soon: !MODES[k].live, desc: MODES[k].short, ico: FICO[k],
         onClick: () => this.setState({ feat: k, rot: 0, modeMenu: false }, () => this.homeTa.current && this.homeTa.current.focus()),
-        icoStyle: "width:30px;height:30px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#FFFFFF;background-image:linear-gradient(160deg," + g[0] + "," + g[1] + ");box-shadow:inset 0 1px 0 rgba(255,255,255,0.3),0 6px 12px -6px rgba(" + g[2] + ",0.6);",
+        icoStyle: "width:20px;height:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:" + (on ? "#021A32" : "#6C737F") + ";",
         rowStyle: "display:flex;flex-direction:row;gap:12px;align-items:center;padding:9px 10px;border-radius:11px;cursor:pointer;transition:background-color .15s ease;" + (on ? "background-color:rgba(2,26,50,0.05);" : "") }; }),
-      curMode: (() => { const k = MODES[s.feat] ? s.feat : "auto", g = FGRAD[k]; return { name: MODES[k].title, ico: FICO[k], icoStyle: "width:22px;height:22px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#FFFFFF;background-image:linear-gradient(160deg," + g[0] + "," + g[1] + ");" }; })(),
+      curMode: (() => { const k = MODES[s.feat] ? s.feat : "auto", g = FGRAD[k]; return { name: MODES[k].title, ico: FICO[k], icoStyle: "width:16px;height:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#021A32;" }; })(),
       modeMenu: !!s.modeMenu, ...(() => { const v = this.props.startStyle || "Cards"; return { csShow: v === "Showcase", csStrip: v === "Strip", csCards: v === "Cards" }; })(),  toggleModeMenu: () => this.setState((st) => ({ modeMenu: !st.modeMenu })),
       chevStyle: "display:flex;color:#898F99;transition:transform .2s ease;" + (s.modeMenu ? "transform:rotate(180deg);" : ""),
       ...(() => { const k = MODES[s.feat] ? s.feat : "auto", M = MODES[k], g = FGRAD[k]; return { m_auto: false, m_req: s.sc === "req", m_job: s.sc === "job", m_policy: s.sc === "policy", m_market: s.sc === "market", modeHint: M.hint, homeTa: this.homeTa,
